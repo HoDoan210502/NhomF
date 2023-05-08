@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -18,21 +18,25 @@ class AdminController extends Controller
     }
     public function dashboard(Request $request)
     {
-        $adminEmail = $request->input('admin_email');
-        $adminPassword = $request->input('admin_password');
+        $admin_email = $request->admin_email;
+        $admin_password = md5($request->admin_password);
 
-        // Kiểm tra thông tin đăng nhập trong database
-        $admin = DB::table('tbl_admin')
-            ->where('admin_email', $adminEmail)
-            ->where('admin_password', $adminPassword)
-            ->first();
+        $result = DB::table('tbl_admin')->where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
 
-        if ($admin) {
-            // Thông tin đăng nhập chính xác, chuyển hướng đến trang dashboard
-            return redirect('admin.dashboard');
+        if ($result) {
+            // Đăng nhập thành công, xuất ra màn hình
+            Session::put('admin_name', $result->admin_name);
+            Session::put('admin_id', $result->id);
+            return $this->showdashboard();
         } else {
-            // Thông tin đăng nhập không chính xác, thực hiện xử lý phù hợp (ví dụ: hiển thị thông báo lỗi)
+            Session::put('message', 'Email hoặc mật khẩu sai');
+            // Đăng nhập không thành công, chuyển hướng về trang admin
+            return redirect('/admin');
         }
     }
 
+    public function logout()
+    {
+        return redirect('/admin');
+    }
 }
