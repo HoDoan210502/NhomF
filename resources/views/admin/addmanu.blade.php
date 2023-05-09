@@ -3,7 +3,7 @@
 <div class="col-lg-12">
     <section class="panel">
         <header class="panel-heading">
-            Add Category
+            Add Manufacturer
         </header>
         <div class="panel-body">
             <?php
@@ -17,25 +17,25 @@
             }
             ?>
             <div class="position-center">
-                <form role="form" action="{{URL::to('/saveproduct')}}" method="post">
+                <form role="form" action="{{URL::to('/savemanu')}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Category's Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Product's Name" name="productname">
+                        <label for="exampleInputEmail1">Manufacturer's Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Manufacturer's Name" name="manuname">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Status</label>
-                        <select name="productstatus" class="form-control m-bot15">
+                        <select name="manustatus" class="form-control m-bot15">
                             <option value="0">Show</option>
                             <option value="1">Hide</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Category's Description</label>
-                        <textarea type="password" rows="8" class="form-control" id="exampleInputPassword1" placeholder="Description" name="productdesc"></textarea>
+                        <label for="exampleInputPassword1">Manufacturer's Description</label>
+                        <textarea type="password" rows="8" class="form-control" id="exampleInputPassword1" placeholder="Description" name="manudesc"></textarea>
                     </div>
 
-                    <button type="submit" name="addproduct" class="btn btn-info">Add Category</button>
+                    <button type="submit" name="addmanu" class="btn btn-info">Add Manufacturer</button>
                 </form>
             </div>
 
