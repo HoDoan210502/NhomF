@@ -55,9 +55,9 @@
                     @foreach($all_product as $key => $pro)
                     <tr>
                         <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                        <td>{{($pro->product_name)}}</td>
+                        <td>{{($pro->category_name)}}</td>
                         <td><?php
-                            if ($pro->product_status == 0) {
+                            if ($pro->category_status == 0) {
                             ?>
                                 <a href="{{URL::to('/hideproduct/'.$pro->category_id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
@@ -72,7 +72,7 @@
                             }
                             ?>
                         </td>
-                        <td>{{($pro->product_desc)}}</td>
+                        <td>{{($pro->category_desc)}}</td>
                         <td>
                             <a href="{{URL::to('/editproduct/'.$pro->category_id)}}" class="active" ui-toggle-class="">
                                 <button><i class="fa fa-pencil text-success text-active">
@@ -87,22 +87,7 @@
             </table>
         </div>
         <footer class="panel-footer">
-            <div class="row">
-
-                <div class="col-sm-5 text-center">
-                    <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-                </div>
-                <div class="col-sm-7 text-right text-center-xs">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+        {{ $all_product->links('pagination::bootstrap-4', ['prev_text' => '', 'next_text' => '']) }}
         </footer>
     </div>
 </div>

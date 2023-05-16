@@ -29,17 +29,17 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Categories</label>
-                        <select name="cate" class="form-control m-bot15">
-                            @foreach($cate as $key => $cate_sp)
-                            <option value="{{('$cate_sp->product_id')}}">{{($cate_sp->product_name)}}</option>
+                        <select name="product_cate" class="form-control m-bot15">
+                            @foreach($cate_product as $key => $cate)
+                            <option value="{{($cate->category_id)}}">{{($cate->category_name)}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Manufacturer</label>
-                        <select name="manu" class="form-control m-bot15">
-                            @foreach($manu as $key => $manu_sp)
-                            <option value="{{('$manu_sp->manu_id')}}">{{($manu_sp->manu_name)}}</option>
+                        <select name="product_manu" class="form-control m-bot15">
+                            @foreach($manu_product as $key => $manu)
+                            <option value="{{($manu->manu_id)}}">{{($manu->manu_name)}}</option>
                             @endforeach
                         </select>
                     </div>

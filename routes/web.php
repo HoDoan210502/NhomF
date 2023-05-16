@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManuController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SPController;
@@ -17,9 +18,12 @@ use App\Http\Controllers\SPController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+//Danh muc san pham
+Route::get('/category-list/{productid}', [ProductController::class, 'showInHome']);
+
+
 
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/dashboard', [AdminController::class, 'showdashboard']);
@@ -45,7 +49,7 @@ Route::get('/all-manu', [ManuController::class, 'allManu']);
 Route::post('/savemanu', [ManuController::class, 'saveManu']);
 
 Route::get('/editmanu/{manuid}', [ManuController::class, 'editManu']);
-Route::post('/updatemanu/{manutid}', [ManuController::class, 'updateManu']);
+Route::post('/updatemanu/{manuid}', [ManuController::class, 'updateManu']);
 
 Route::get('/deletemanu/{manuid}', [ManuController::class, 'deleteManu']);
 Route::get('/showmanu/{manuid}', [ManuController::class, 'showManu']);
@@ -58,7 +62,7 @@ Route::get('/all-sp', [SPController::class, 'allSP']);
 Route::post('/savesp', [SPController::class, 'saveSP']);
 
 Route::get('/editsp/{spid}', [SPController::class, 'editSP']);
-Route::post('/updatesp/{sptid}', [SPController::class, 'updateSP']);
+Route::post('/updatesp/{spid}', [SPController::class, 'updateSP']);
 
 Route::get('/deletesp/{spid}', [SPController::class, 'deleteSP']);
 Route::get('/showsp/{spid}', [SPController::class, 'showSP']);
